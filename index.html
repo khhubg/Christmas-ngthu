@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cây Thông Noel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .tree-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            opacity: 0;
+            animation: fadeIn 5s forwards;
+        }
+
+        .tree {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid green;
+            opacity: 0;
+            animation: growTree 3s forwards 1s;
+        }
+
+        .trunk {
+            position: absolute;
+            bottom: 0;
+            left: 90px;
+            width: 20px;
+            height: 50px;
+            background: brown;
+            opacity: 0;
+            animation: fadeIn 1s forwards 4s;
+        }
+
+        .snow {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes growTree {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10px;
+                transform: translateX(0);
+            }
+            100% {
+                top: 100%;
+                transform: translateX(50px);
+            }
+        }
+
+        .text {
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 3s forwards 4s;
+        }
+
+        .text .name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .text .greeting {
+            font-size: 18px;
+        }
+
+        .added-image {
+            position: absolute;
+            top: -120px; /* Điều chỉnh vị trí hình ảnh */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Kích thước hình */
+            z-index: 5;
+            animation: fadeIn 2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="tree-container">
+        <img src="https://drive.google.com/uc?export=view&id=1bMsfhFSrDAFyga7L2pULK1P9PoOIkRlI
+" alt="hinh" class="blob:https://www.facebook.com/2e49aa77-e37c-4b62-9108-94b6fa108d4c">
+        <div class="tree"></div>
+        <div class="trunk"></div>
+        <div class="snow" id="snow"></div>
+    </div>
+    <div class="text">
+        <div class="name">Nguyệt Thu</div>
+        <div class="greeting">Merry Christmas</div>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng tuyết rơi
+        const snowContainer = document.getElementById('snow');
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowContainer.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>
